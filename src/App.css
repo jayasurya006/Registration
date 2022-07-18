@@ -1,0 +1,75 @@
+.panel-1 {
+  display: flex;
+  min-width: 15%;
+  max-width: 15%;
+  height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-right: 10px;
+}
+
+.panel-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.App {
+  /* background: linear-gradient(148deg, rgba(195,195,195,1) 0%, rgba(149,133,133,1) 15%, rgba(170,156,156,1) 21%, rgba(164,142,142,1) 41%, rgba(185,171,171,1) 43%, rgba(175,153,153,1) 54%, rgba(191,170,170,1) 55%, rgba(235,227,227,0.9699230033810399) 98%); */
+  /* background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); */
+  /* background-color: #00DBDE;
+background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%); */
+  /* background-color: #D9AFD9;
+background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%); */
+}
+
+.Tabs-1 {
+  background-color: white;
+  min-height: 80%;
+  max-height: 80%;
+  overflow-y: scroll;
+  width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 30px;
+}
+
+.tab-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Tabs-2 {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Tabs::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.ant-tabs-tab {
+  color: #c8cbcf !important;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #7a8081 !important;
+  text-shadow: 0 0 0.25px currentcolor;
+}
+
+.errors {
+  text-align: center;
+  color: rgb(238, 54, 54);
+}

@@ -1,0 +1,33 @@
+.sidebar-image {
+    width: 80%;
+    margin: 10px;
+    
+}
+
+.sidebar-header {
+    height: 20%;
+    width: 100%;
+}
+
+.sidebar-content {
+    height: 80%;
+    background-color:rgb(99, 109, 117);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 100%;
+}
+
+.sidebar-details-heading {
+    color: rgb(255, 255, 255);
+    font-size: larger;
+}
+
+.sidebar-details  p {
+    color: rgb(253, 253, 253);
+    text-align: left
+}

@@ -1,0 +1,61 @@
+.eli-tab-items {
+  list-style: none;
+  font-family: "Prompt", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.eli-heading {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Prompt", sans-serif;
+  color: rgb(120, 129, 132);
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.eli-content {
+  font-size: 13px;
+  margin: 10px;
+  color: rgb(118, 124, 126);
+}
+
+ul {
+  list-style: none;
+}
+
+h2 {
+  margin: 30px;
+}
+
+.card {
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  border-radius: 15px;
+  min-width: 60vw;
+  height: 60vh;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  margin: 10px;
+  color: rgb(163, 176, 177);
+}
+
+.icon:hover {
+  color: rgb(137, 143, 144);
+}
