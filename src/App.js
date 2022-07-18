@@ -108,7 +108,7 @@ function App() {
                           />
                         </TabPane>
                         <TabPane tab="Preview" key="8">
-                          <Preview setActiveKey={setActiveKey} />
+                          <Preview setActiveKey={setActiveKey} bulk={bulk} />
                         </TabPane>
                         <TabPane tab="Thank you" key="9">
                           <Thank setActiveKey={setActiveKey} />

@@ -44,7 +44,7 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
         .min(3, "Too short"),
       address_2: Yup.string()
         .required("address is required")
-        .min(10, "Too short"),
+        .min(3, "Too short"),
       state: Yup.string().required("address is required").min(3, "Too short"),
       city: Yup.string().required("city is required").min(3, "Too short"),
       pin_code: Yup.number()
@@ -59,7 +59,7 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
         .min(3, "Too short"),
       address_2: Yup.string()
         .required("address is required")
-        .min(10, "Too short"),
+        .min(3, "Too short"),
       state: Yup.string().required("address is required").min(3, "too short"),
       city: Yup.string().required("city is required").min(3, "too short"),
       pin_code: Yup.number()

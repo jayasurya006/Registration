@@ -30,6 +30,8 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
     const formData = new FormData();
     formData.append("parent_details", JSON.stringify(bulk.parent_details));
     formData.append("relevant_type", bulk.relevent_type);
+    formData.append("alumini_details", JSON.stringify(bulk.alumini_details));
+
     formData.append("email", bulk.email);
     formData.append("applicant_photo", bulk.student_details.applicant_photo);
     formData.append("adhar_photo", bulk.student_details.aadhar_card);
@@ -39,9 +41,8 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
     formData.append("mobile", bulk.mobile);
     formData.append("student_details", JSON.stringify(bulk.student_details));
     formData.append("address", JSON.stringify(bulk.address));
-
-    console.log(bulk);
     axios.post("http://192.168.0.112:3002/user/create", formData);
+    setActiveKey("8");
   };
 
   const inital = {

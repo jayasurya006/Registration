@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./verify.css";
 
 import { Form, Input, Button, message } from "antd";
 import { Footer } from "../Component/Footer";
 
 const Verify = ({ setActiveKey, bulk }) => {
+  const OTP = 2535;
+
   const [form] = Form.useForm();
 
+  const [pass, setPass] = useState(false);
+
+  const [state, setState] = useState("");
+
   const onFinish = () => {
-    form.validateFields().then((e) => {
-      setData(e);
-    });
-    setActiveKey("4");
+    if (state == OTP) {
+      setPass(false);
+      setActiveKey("4");
+      console.log("called");
+    } else {
+      setPass(true);
+      console.log(state);
+    }
   };
 
   return (
@@ -39,14 +49,18 @@ const Verify = ({ setActiveKey, bulk }) => {
         <div className="eli-content" style={{ fontSize: "14px" }}>
           We have've sent the address and mail to your mobile -
           <span style={{ textDecoration: "underline" }}> {bulk.mobile}</span>{" "}
-          and email -{" "}
+          and email -
           <span style={{ textDecoration: "underline" }}>{bulk.email}</span>
         </div>
-        <Form.Item
-          name="mail"
-          rules={[{ required: true, message: "Please input your Email Id!" }]}
-        >
-          <Input placeholder="Enter Verification Code" prefix={"OTP : "} />
+        <Form.Item name="otp">
+          <input
+            className="form-control"
+            placeholder="Enter Verification Code"
+            prefix={"OTP : "}
+            onChange={(e) => setState(e.target.value)}
+            value={state}
+          />
+          {pass ? <div className="errors">Incorrect OTP</div> : ""}
         </Form.Item>
         <p className="eli-content">
           <span>

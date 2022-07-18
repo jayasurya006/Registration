@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Space, Table, Tag, Button } from "antd";
 
-const Preview = ({ setActiveKey }) => {
+const Preview = ({ setActiveKey, bulk }) => {
+  const [file, setFile] = useState();
+  const fileToBase64 = (file, cb) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      cb(null, reader.result);
+    };
+    reader.onerror = function (error) {
+      cb(error, null);
+    };
+  };
+  fileToBase64(bulk.parent_details.mother_details.photo, (err, result) => {
+    if (result) {
+      setFile(result);
+    }
+  });
   const columns = [
     {
       title: "Name",
@@ -75,6 +91,7 @@ const Preview = ({ setActiveKey }) => {
       tags: ["cool", "teacher"],
     },
   ];
+
   return (
     <div className="eli-tab-items">
       <div className="eli-heading">Thanks For Registering With Us</div>
@@ -99,6 +116,7 @@ const Preview = ({ setActiveKey }) => {
       >
         <Button onClick={() => setActiveKey("4")}>Priview</Button>
         <Button type="primary">Download</Button>
+        {file}
       </div>
     </div>
   );

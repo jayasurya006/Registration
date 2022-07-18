@@ -213,7 +213,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   name="class"
                   onChange={(e) => Formik.setFieldValue("class", e)}
                 >
-                  <Option value="LKg">LKG</Option>
+                  <Option value="LKG">LKG</Option>
                   <Option value="UKG">UKG</Option>
                   <Option value="1">1</Option>
                   <Option value="2">2</Option>
