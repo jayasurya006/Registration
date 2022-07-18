@@ -4,7 +4,7 @@ import "./verify.css";
 import { Form, Input, Button, message } from "antd";
 import { Footer } from "../Component/Footer";
 
-const Verify = ({ setActiveKey }) => {
+const Verify = ({ setActiveKey, bulk }) => {
   const [form] = Form.useForm();
 
   const onFinish = () => {
@@ -36,6 +36,12 @@ const Verify = ({ setActiveKey }) => {
             after some time.
           </span>
         </p>
+        <div className="eli-content" style={{ fontSize: "14px" }}>
+          We have've sent the address and mail to your mobile -
+          <span style={{ textDecoration: "underline" }}> {bulk.mobile}</span>{" "}
+          and email -{" "}
+          <span style={{ textDecoration: "underline" }}>{bulk.email}</span>
+        </div>
         <Form.Item
           name="mail"
           rules={[{ required: true, message: "Please input your Email Id!" }]}
@@ -50,16 +56,16 @@ const Verify = ({ setActiveKey }) => {
             The data might be cleared if you return
           </span>
         </p>
+        <div>{}</div>
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             width: "100%",
             margin: "50px",
             height: "20%",
           }}
         >
-          <Button> {"<< Back"}</Button>
           <Button type="primary" onClick={onFinish}>
             {"Next >>"}
           </Button>

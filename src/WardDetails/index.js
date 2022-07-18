@@ -30,7 +30,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
       gender: "",
       height: "",
       aadhar_no: "",
-      special_eads: "",
+      age: "",
       board: "",
       distance: "",
       aadhar_card: null,
@@ -43,29 +43,35 @@ export default function ({ setActiveKey, bulk, setBulk }) {
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
-        .min(2, "Too shor")
+        .min(5, "Too short")
         .max(25, "To long ")
         .required("Name Required"),
       class: Yup.string().required("A class is required"),
       weight: Yup.number()
         .min(20, "Give proper weight")
+        .max(150, "Give correct weight")
         .required("weight is required")
         .typeError("Must be in number"),
-      nationality: Yup.string().required("nationality is required"),
+      nationality: Yup.string()
+        .min(5, "invalid")
+        .required("nationality is required"),
       religion: Yup.string().required("religion is required"),
       community: Yup.string().required("Community is required"),
       last_name: Yup.string()
-        .min(2, "Too shor")
+        .min(5, "Too short")
         .max(25, "To long ")
         .required("Name Required"),
       dob: Yup.string().required("dob required"),
       blood_group: Yup.string().required("blood group required"),
-      mother_tongue: Yup.string().required("mother tongue is required"),
-      extra_curricular: Yup.string().required(" required"),
-      prof_of_sports: Yup.string().required("required"),
+      mother_tongue: Yup.string()
+        .min(5, "invalid")
+        .required("mother tongue is required"),
+      extra_curricular: Yup.string().min(5, "invalid").required(" required"),
+      prof_of_sports: Yup.string().min(5, "invalid").required("required"),
       gender: Yup.string().required("gender is is required"),
       height: Yup.number()
-        .min(3, "Give proper height")
+        .min(1, "Give proper height")
+        .max(10, "give correct height")
         .required("height is required")
         .typeError("Must be in number"),
       aadhar_no: Yup.number()
@@ -73,7 +79,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
         .max(999999999999, "Must be 12 digits")
         .required("Aadhar no is required")
         .typeError("Must be in number"),
-      special_eads: Yup.string().required("special eads is required"),
+      age: Yup.number()
+        .min(3, "invalid 3-20")
+        .max(20, "invalid 3-20")
+        .typeError("invalid")
+        .required("age is required"),
       board: Yup.string().required("A board is required"),
       applicant_photo: Yup.mixed()
         .nullable()
@@ -235,7 +245,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
-                  placeholder="Height"
+                  placeholder="Height in Feet.inchs"
                   name="height"
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
@@ -246,7 +256,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
-                  placeholder="Weight"
+                  placeholder="Weight in Kg"
                   name="weight"
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
@@ -308,13 +318,13 @@ export default function ({ setActiveKey, bulk, setBulk }) {
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
-                  placeholder="Special Eeds"
-                  name="special_eads"
+                  placeholder="Age"
+                  name="age"
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.special_eads && Formik.touched.special_eads
-                  ? Formik.errors.special_eads
+                {Formik.errors.age && Formik.touched.age
+                  ? Formik.errors.age
                   : null}
               </Form.Item>
               <Form.Item className="formChild">

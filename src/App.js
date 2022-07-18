@@ -53,7 +53,6 @@ function App() {
                   <>
                     <div className="Tabs-1">
                       <Tabs
-                        onChange={onChange}
                         centered
                         tabBarGutter={40}
                         activeKey={activeKey}
@@ -78,7 +77,7 @@ function App() {
                           />
                         </TabPane>
                         <TabPane tab="Verification" key="3">
-                          <Verify setActiveKey={setActiveKey} />
+                          <Verify setActiveKey={setActiveKey} bulk={bulk} />
                         </TabPane>
                         <TabPane tab="Category" key="4">
                           <AdmissionType

@@ -39,18 +39,34 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
 
   const schema = Yup.object({
     communication_address: Yup.object({
-      address_1: Yup.string().required("address is required"),
-      address_2: Yup.string().required("address is required"),
-      state: Yup.string().required("address is required"),
-      city: Yup.string().required("city is required"),
-      pin_code: Yup.string().required("Pincode is required"),
+      address_1: Yup.string()
+        .required("address is required")
+        .min(3, "Too short"),
+      address_2: Yup.string()
+        .required("address is required")
+        .min(10, "Too short"),
+      state: Yup.string().required("address is required").min(3, "Too short"),
+      city: Yup.string().required("city is required").min(3, "Too short"),
+      pin_code: Yup.number()
+        .min(100000, "invalid")
+        .max(999999, " invalid")
+        .typeError("invalid Pincode")
+        .required("Pincode is required"),
     }),
     permanent_address: Yup.object({
-      address_1: Yup.string().required("address is required"),
-      address_2: Yup.string().required("address is required"),
-      state: Yup.string().required("address is required"),
-      city: Yup.string().required("city is required"),
-      pin_code: Yup.string().required("Pincode is required"),
+      address_1: Yup.string()
+        .required("address is required")
+        .min(3, "Too short"),
+      address_2: Yup.string()
+        .required("address is required")
+        .min(10, "Too short"),
+      state: Yup.string().required("address is required").min(3, "too short"),
+      city: Yup.string().required("city is required").min(3, "too short"),
+      pin_code: Yup.number()
+        .min(100000, "invalid")
+        .max(999999, "invalid")
+        .typeError("invalid Pincode")
+        .required("Pincode is required"),
     }),
   });
 
@@ -111,7 +127,7 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             className="form-control n-2"
                             placeholder="Address 2"
                             name="communication_address.address_2"
-                            value={values?.commmunication_address?.address_2}
+                            value={values?.communication_address?.address_2}
                           />
                           {errors?.communication_address?.address_2 &&
                           touched?.communication_address?.address_2
@@ -123,7 +139,7 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             className="form-control n-2"
                             placeholder="state"
                             name="communication_address.state"
-                            value={values?.commmunication_address?.state}
+                            value={values?.communication_address?.state}
                           />
                           {errors?.communication_address?.state &&
                           touched?.communication_address?.state
@@ -135,7 +151,7 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             className="form-control n-2"
                             placeholder="City"
                             name="communication_address.city"
-                            value={values?.commmunication_address?.city}
+                            value={values?.communication_address?.city}
                           />
                           {errors?.communication_address?.city &&
                           touched?.communication_address?.city
@@ -147,7 +163,7 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             className="form-control n-2"
                             placeholder="Pin Code"
                             name="communication_address.pin_code"
-                            value={values?.commmunication_address?.pin_code}
+                            value={values?.communication_address?.pin_code}
                           />
                           {errors?.communication_address?.pin_code &&
                           touched?.communication_address?.pin_code
@@ -256,13 +272,12 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "space-between",
+                      justifyContent: "flex-end",
                       width: "100%",
                       margin: "50px",
                       height: "20%",
                     }}
                   >
-                    <Button> {"<< Back"}</Button>
                     <Button type="primary" htmlType="submit">
                       {"Next >>"}
                     </Button>

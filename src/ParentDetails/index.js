@@ -18,7 +18,6 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
         parent_details: data,
       };
     });
-    console.log(data, "final");
   }, [data]);
 
   const onFinish = () => {
@@ -30,17 +29,18 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
   const Call = () => {
     const formData = new FormData();
     formData.append("parent_details", JSON.stringify(bulk.parent_details));
-    formData.append("relevant_type", bulk.relevant_type);
+    formData.append("relevant_type", bulk.relevent_type);
     formData.append("email", bulk.email);
     formData.append("applicant_photo", bulk.student_details.applicant_photo);
     formData.append("adhar_photo", bulk.student_details.aadhar_card);
     formData.append("age_proof", bulk.student_details.age_proof);
-    formData.append("father_photo", bulk.parent_details.photo);
-    formData.append("mother_photo", bulk.parent_details.photo);
+    formData.append("father_photo", bulk.parent_details.mother_details?.photo);
+    formData.append("mother_photo", bulk.parent_details.father_details?.photo);
     formData.append("mobile", bulk.mobile);
     formData.append("student_details", JSON.stringify(bulk.student_details));
     formData.append("address", JSON.stringify(bulk.address));
-    console.log(formData);
+
+    console.log(bulk);
     axios.post("http://192.168.0.112:3002/user/create", formData);
   };
 
@@ -71,20 +71,33 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
 
   const schema = Yup.object({
     father_details: Yup.object({
-      first_name: Yup.string().required("First Name is required"),
-      last_name: Yup.string().required("Last Name is required"),
+      first_name: Yup.string()
+        .required("First Name is required")
+        .min(3, "too short"),
+      last_name: Yup.string()
+        .required("Last Name is required")
+        .min(3, "too short"),
+
       mobile_no: Yup.number()
         .typeError("invalid number")
-        .positive()
-        .min(1, "invalid number")
-        .max(10, "invalid number")
+        .min(6000000000, "invalid number")
+        .max(9999999999, "invalid number")
         .required(" number is required"),
-      email: Yup.string().required("Email is required"),
-      qualification: Yup.string().required("Qualification is required"),
-      occupation: Yup.string().required("Ocuupation is required"),
-      work: Yup.string().required("Work is required"),
+      email: Yup.string()
+        .email("invalid email")
+        .required("Email is required")
+        .typeError("invalid"),
+      qualification: Yup.string()
+        .required("Qualification is required")
+        .min(2, "invalid"),
+      occupation: Yup.string()
+        .required("Ocuupation is required")
+        .min(3, "invalid"),
+
+      work: Yup.string().required("Work is required").min(5, "invalid"),
+
       income: Yup.number()
-        .min(5000)
+        .min(5000, "invalid")
         .required("Income is required")
         .typeError("invalid income"),
       photo: Yup.mixed()
@@ -103,20 +116,31 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
         ),
     }),
     mother_details: Yup.object({
-      first_name: Yup.string().required("First Name is required"),
-      last_name: Yup.string().required("Last Name is required"),
+      first_name: Yup.string()
+        .required("First Name is required")
+        .min(3, "too short"),
+      last_name: Yup.string()
+        .required("Last Name is required")
+        .min(3, "too short"),
+
       mobile_no: Yup.number()
         .typeError("invalid number")
-        .positive()
-        .min(1, "invalid number")
-        .max(10, "invalid number")
+        .min(6000000000, "invalid number")
+        .max(9999999999, "invalid number")
         .required(" number is required"),
-      email: Yup.string().required("Email is required"),
-      qualification: Yup.string().required("Qualification is required"),
-      occupation: Yup.string().required("Ocuupation is required"),
-      work: Yup.string().required("Work is required"),
+      email: Yup.string()
+        .email("invalid email")
+        .required("Email is required")
+        .typeError("invalid"),
+      qualification: Yup.string()
+        .required("Qualification is required")
+        .min(3, "invalid"),
+      occupation: Yup.string()
+        .required("Ocuupation is required")
+        .min(3, "invalid"),
+      work: Yup.string().required("Work is required").min(5, "invalid"),
       income: Yup.number()
-        .min(5000)
+        .min(5000, "invalid")
         .required("Income is required")
         .typeError("invalid income"),
       photo: Yup.mixed()
@@ -143,6 +167,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
         validationSchema={schema}
         onSubmit={(e) => {
           setData(e);
+          Call();
         }}
       >
         {({ errors, touched, values, setFieldValue }) => {
@@ -271,7 +296,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                       </span>
                     </p>
                     <label
-                      for="myFile"
+                      for="myFile6"
                       style={{
                         outline: "none",
                         padding: "5px 10px",
@@ -286,7 +311,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     </label>
                     <input
                       type="file"
-                      id="myFile"
+                      id="myFile6"
                       name="father_details.photo"
                       onChange={(e) =>
                         setFieldValue("father_details.photo", e.target.files[0])
@@ -425,7 +450,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                       </span>
                     </p>
                     <label
-                      for="myFile2"
+                      for="myFile5"
                       style={{
                         outline: "none",
                         padding: "5px 10px",
@@ -440,7 +465,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     </label>
                     <input
                       type="file"
-                      id="myFile2"
+                      id="myFile5"
                       name="mother_details.photo"
                       onChange={(e) =>
                         setFieldValue("mother_details.photo", e.target.files[0])
@@ -448,10 +473,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                       hidden
                     />
                   </div>
-                  <div>
-                    {errors?.mother_details?.photo &&
-                      errors?.mother_details?.photo}
-                  </div>
+                  <div>{errors?.mother_details?.photo}</div>
                 </div>
               </div>
               <div className="Parent-footer">
@@ -464,11 +486,13 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     height: "20%",
                   }}
                 >
-                  <Button> {"<< Back"}</Button>
-                  <Button type="primary" htmlType="submit">
-                    {"Next >>"}
+                  <Button onClick={() => setActiveKey("4")}>
+                    {" "}
+                    {"<< Preview"}{" "}
                   </Button>
-                  <Button onClick={Call}>Call</Button>
+                  <Button type="primary" htmlType="submit">
+                    {"Submit"}
+                  </Button>
                 </div>
               </div>
             </Form>

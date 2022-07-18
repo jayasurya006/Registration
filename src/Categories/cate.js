@@ -6,7 +6,7 @@ import axios from "axios";
 import { Footer } from "../Component/Footer";
 
 const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
-  const [relevantType, setReleventType] = useState("Generel");
+  const [relevantType, setReleventType] = useState("General");
 
   const [data, setData] = useState({});
 
@@ -110,7 +110,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
         <Form form={form}>
           <Radio.Group onChange={onChange} value={relevantType}>
             <Space direction="vertical">
-              <Radio value={"Generel"}>General</Radio>
+              <Radio value={"General"}>General</Radio>
 
               <Radio value={"Father"}>Father As Alumini </Radio>
               {relevantType === "Father" ? (
@@ -125,7 +125,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
                   </Form.Item>
 
                   <Form.Item
-                    name="Year"
+                    name="year"
                     rules={[
                       {
                         required: true,
@@ -151,7 +151,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
                   </Form.Item>
 
                   <Form.Item
-                    name="Year"
+                    name="year"
                     rules={[
                       {
                         required: true,
@@ -192,7 +192,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
                     <Input placeholder="Sibiling Class" />
                   </Form.Item>
                   <Form.Item
-                    name="Section"
+                    name="section"
                     rules={[
                       {
                         required: true,
@@ -215,13 +215,12 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             width: "100%",
             margin: "50px",
             height: "20%",
           }}
         >
-          <Button> {"<< Back"}</Button>
           <Button type="primary" onClick={onFinish}>
             {"Next >>"}
           </Button>
