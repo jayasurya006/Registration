@@ -117,6 +117,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
                 <>
                   <Form.Item
                     name="name"
+                    className="cat-input"
                     rules={[
                       { required: true, message: "Please input your Name!" },
                     ]}
@@ -126,6 +127,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
 
                   <Form.Item
                     name="year"
+                    className="cat-input"
                     rules={[
                       {
                         required: true,

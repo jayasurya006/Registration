@@ -43,51 +43,51 @@ export default function ({ setActiveKey, bulk, setBulk }) {
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
-        .min(5, "Too short")
-        .max(25, "To long ")
+        .min(5, "Too Short")
+        .max(25, "To Long ")
         .required("Name Required"),
-      class: Yup.string().required("A class is required"),
+      class: Yup.string().required("A Class is Required"),
       weight: Yup.number()
-        .min(20, "Give proper weight")
-        .max(150, "Give correct weight")
-        .required("weight is required")
+        .min(20, "Give Proper Weight")
+        .max(150, "Give Correct Weight")
+        .required("Weight is Required")
         .typeError("Must be in number"),
       nationality: Yup.string()
-        .min(5, "invalid")
-        .required("nationality is required"),
-      religion: Yup.string().required("religion is required"),
-      community: Yup.string().required("Community is required"),
+        .min(5, "Invalid")
+        .required("Nationality is required"),
+      religion: Yup.string().required("Religion is Required"),
+      community: Yup.string().required("Community is Required"),
       last_name: Yup.string()
-        .min(5, "Too short")
-        .max(25, "To long ")
+        .min(5, "Too Short")
+        .max(25, "To Long ")
         .required("Name Required"),
-      dob: Yup.string().required("dob required"),
-      blood_group: Yup.string().required("blood group required"),
+      dob: Yup.string().required("Date of birth Required"),
+      blood_group: Yup.string().required("Blood Group Required"),
       mother_tongue: Yup.string()
-        .min(5, "invalid")
-        .required("mother tongue is required"),
-      extra_curricular: Yup.string().min(5, "invalid").required(" required"),
-      prof_in_sports: Yup.string().min(5, "invalid").required("required"),
-      gender: Yup.string().required("gender is is required"),
+        .min(5, "Invalid")
+        .required("Mother Tongue Is Required"),
+      extra_curricular: Yup.string().min(5, "Invalid").required(" Required"),
+      prof_in_sports: Yup.string().min(5, "Invalid").required("Required"),
+      gender: Yup.string().required("Gender is Required"),
       height: Yup.number()
-        .min(1, "Give proper height")
-        .max(10, "give correct height")
-        .required("height is required")
-        .typeError("Must be in number"),
+        .min(80, "Give Proper Height")
+        .max(200, "Give Correct Height")
+        .required("Height is Required")
+        .typeError("Must be in Number"),
       aadhar_no: Yup.number()
         .min(100000000000, "Must be 12 digits")
         .max(999999999999, "Must be 12 digits")
-        .required("Aadhar no is required")
-        .typeError("Must be in number"),
+        .required("Aadhar no is Required")
+        .typeError("Must be in Number"),
       age: Yup.number()
-        .min(3, "invalid 3-20")
-        .max(20, "invalid 3-20")
-        .typeError("invalid")
-        .required("age is required"),
-      board: Yup.string().required("A board is required"),
+        .min(3, "Invalid 3-20")
+        .max(20, "Invalid 3-20")
+        .typeError("Invalid")
+        .required("age is Required"),
+      board: Yup.string().required(" Board is Required"),
       applicant_photo: Yup.mixed()
         .nullable()
-        .required("image required")
+        .required("Image Required")
         .test(
           "FILE_SIZE",
           "Uploaded file is too big.",
@@ -101,7 +101,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
         ),
       aadhar_card: Yup.mixed()
         .nullable()
-        .required("image required")
+        .required("Image Required")
         .test(
           "FILE_SIZE",
           "Uploaded file is too big.",
@@ -115,7 +115,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
         ),
       age_proof: Yup.mixed()
         .nullable()
-        .required("image required")
+        .required("Image Required")
         .test(
           "FILE_SIZE",
           "Uploaded file is too big.",
@@ -128,8 +128,8 @@ export default function ({ setActiveKey, bulk, setBulk }) {
             !value || (value && SUPPORTED_FORMATS.includes(value?.type))
         ),
       distance: Yup.number()
-        .required("Distance is required")
-        .typeError("Must be in number"),
+        .required("Distance is Required")
+        .typeError("Must be in Number"),
     }),
   });
 
@@ -145,6 +145,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
 
   useEffect(() => {
     setBulk((e) => {
+      console.log(e, "bulk");
       return {
         ...e,
         student_details: data,
@@ -176,9 +177,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.first_name && Formik.touched.first_name
-                  ? Formik.errors.first_name
-                  : null}
+                <div className="errors">
+                  {Formik.errors.first_name && Formik.touched.first_name
+                    ? Formik.errors.first_name
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -187,9 +190,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.last_name && Formik.touched.last_name
-                  ? Formik.errors.last_name
-                  : null}
+                <div className="errors">
+                  {Formik.errors.last_name && Formik.touched.last_name
+                    ? Formik.errors.last_name
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Select
@@ -199,12 +204,13 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onChange={(e) => Formik.setFieldValue("gender", e)}
                 >
                   <Option value="male">male</Option>
-                  <Option value="female">female</Option>
-                  <Option value="other">other</Option>
+                  <Option value="female">Female</Option>
                 </Select>
-                {Formik.errors.gender && Formik.touched.gender
-                  ? Formik.errors.gender
-                  : null}
+                <div className="errors">
+                  {Formik.errors.gender && Formik.touched.gender
+                    ? Formik.errors.gender
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Select
@@ -228,9 +234,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   <Option value="11">11</Option>
                   <Option value="12">12</Option>
                 </Select>
-                {Formik.errors.class && Formik.touched.class
-                  ? Formik.errors.class
-                  : null}
+                <div className="errors">
+                  {Formik.errors.class && Formik.touched.class
+                    ? Formik.errors.class
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <DatePicker
@@ -241,20 +249,24 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     Formik.setFieldValue("dob", e);
                   }}
                 />
-                {Formik.errors.dob && Formik.touched.dob
-                  ? Formik.errors.dob
-                  : null}
+                <div className="errors">
+                  {Formik.errors.dob && Formik.touched.dob
+                    ? Formik.errors.dob
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
-                  placeholder="Height in Feet.inchs"
+                  placeholder="Height in CM"
                   name="height"
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.height && Formik.touched.height
-                  ? Formik.errors.height
-                  : null}
+                <div className="errors">
+                  {Formik.errors.height && Formik.touched.height
+                    ? Formik.errors.height
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -263,9 +275,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.weight && Formik.touched.weight
-                  ? Formik.errors.weight
-                  : null}
+                <div className="errors">
+                  {Formik.errors.weight && Formik.touched.weight
+                    ? Formik.errors.weight
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Select
@@ -281,9 +295,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   <Option value="O+">O+</Option>
                   <Option value="O-">O-</Option>
                 </Select>
-                {Formik.errors.blood_group && Formik.touched.blood_group
-                  ? Formik.errors.blood_group
-                  : null}
+                <div className="errors">
+                  {Formik.errors.blood_group && Formik.touched.blood_group
+                    ? Formik.errors.blood_group
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -292,9 +308,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.aadhar_no && Formik.touched.aadhar_no
-                  ? Formik.errors.aadhar_no
-                  : null}
+                <div className="errors">
+                  {Formik.errors.aadhar_no && Formik.touched.aadhar_no
+                    ? Formik.errors.aadhar_no
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -303,9 +321,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.nationality && Formik.touched.nationality
-                  ? Formik.errors.nationality
-                  : null}
+                <div className="errors">
+                  {Formik.errors.nationality && Formik.touched.nationality
+                    ? Formik.errors.nationality
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -314,9 +334,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.mother_tongue && Formik.touched.mother_tongue
-                  ? Formik.errors.mother_tongue
-                  : null}
+                <div className="errors">
+                  {Formik.errors.mother_tongue && Formik.touched.mother_tongue
+                    ? Formik.errors.mother_tongue
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -325,9 +347,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.age && Formik.touched.age
-                  ? Formik.errors.age
-                  : null}
+                <div className="errors">
+                  {Formik.errors.age && Formik.touched.age
+                    ? Formik.errors.age
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Select
@@ -340,9 +364,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   <Option value="christian">Christian</Option>
                   <Option value="muslim">Muslim</Option>
                 </Select>
-                {Formik.errors.religion && Formik.touched.religion
-                  ? Formik.errors.religion
-                  : null}
+                <div className="errors">
+                  {Formik.errors.religion && Formik.touched.religion
+                    ? Formik.errors.religion
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -351,10 +377,12 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.extra_curricular &&
-                Formik.touched.extra_curricular
-                  ? Formik.errors.extra_curricular
-                  : null}
+                <div className="errors">
+                  {Formik.errors.extra_curricular &&
+                  Formik.touched.extra_curricular
+                    ? Formik.errors.extra_curricular
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Select
@@ -367,9 +395,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   <Option value="ICSE">ICSE</Option>
                   <Option value="SAMACHEER">SAMACHEER</Option>
                 </Select>
-                {Formik.errors.board && Formik.touched.board
-                  ? Formik.errors.board
-                  : null}
+                <div className="errors">
+                  {Formik.errors.board && Formik.touched.board
+                    ? Formik.errors.board
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -378,9 +408,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.distance && Formik.touched.distance
-                  ? Formik.errors.distance
-                  : null}
+                <div className="errors">
+                  {Formik.errors.distance && Formik.touched.distance
+                    ? Formik.errors.distance
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Input
@@ -389,9 +421,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.prof_in_sports && Formik.touched.prof_in_sports
-                  ? Formik.errors.prof_in_sports
-                  : null}
+                <div className="errors">
+                  {Formik.errors.prof_in_sports && Formik.touched.prof_in_sports
+                    ? Formik.errors.prof_in_sports
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <Select
@@ -406,9 +440,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   <Option value="SC">SC</Option>
                   <Option value="Muslim BC">Muslim BC</Option>
                 </Select>
-                {Formik.errors.community && Formik.touched.community
-                  ? Formik.errors.community
-                  : null}
+                <div className="errors">
+                  {Formik.errors.community && Formik.touched.community
+                    ? Formik.errors.community
+                    : null}
+                </div>
               </Form.Item>
               <Form.Item className="formChild">
                 <div style={{ textAlign: "center" }}>
@@ -441,11 +477,13 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     name="age_proof"
                     onChange={(e) => {
                       Formik.setFieldValue("age_proof", e.target.files[0]),
-                        message.success("Successfully updated");
+                        message.success("Successfully Updated");
                     }}
                   />
                 </div>
                 <div className="errors">
+                  {Formik?.values?.age_proof?.name}
+
                   {Formik.errors.age_proof && Formik.touched.age_proof
                     ? Formik.errors.age_proof
                     : null}
@@ -485,11 +523,13 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                         "applicant_photo",
                         e.target.files[0]
                       ),
-                        message.success("Successfully updated");
+                        message.success("Successfully Updated");
                     }}
                   />
                 </div>
                 <div className="errors">
+                  {Formik?.values?.applicant_photo?.name}
+
                   {Formik.errors.applicant_photo &&
                   Formik.touched.applicant_photo
                     ? Formik.errors.applicant_photo
@@ -529,10 +569,11 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     name="aadhar_card"
                     onChange={(e) => {
                       Formik.setFieldValue("aadhar_card", e.target.files[0]),
-                        message.success("Successfully updated");
+                        message.success("Successfully Updated");
                     }}
                   />
                   <div className="errors">
+                    {Formik?.values?.aadhar_card?.name}
                     {Formik.errors.aadhar_card && Formik.touched.aadhar_card
                       ? Formik.errors.aadhar_card
                       : null}

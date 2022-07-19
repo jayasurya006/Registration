@@ -20,31 +20,6 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
     });
   }, [data]);
 
-  const onFinish = () => {
-    // form.validateFields().then((e) => {
-    //   setData(e);
-    // });
-  };
-
-  const Call = () => {
-    const formData = new FormData();
-    formData.append("parent_details", JSON.stringify(bulk.parent_details));
-    formData.append("relevant_type", bulk.relevent_type);
-    formData.append("alumini_details", JSON.stringify(bulk.alumini_details));
-
-    formData.append("email", bulk.email);
-    formData.append("applicant_photo", bulk.student_details.applicant_photo);
-    formData.append("adhar_photo", bulk.student_details.aadhar_card);
-    formData.append("age_proof", bulk.student_details.age_proof);
-    formData.append("father_photo", bulk.parent_details.mother_details?.photo);
-    formData.append("mother_photo", bulk.parent_details.father_details?.photo);
-    formData.append("mobile", bulk.mobile);
-    formData.append("student_details", JSON.stringify(bulk.student_details));
-    formData.append("address", JSON.stringify(bulk.address));
-    axios.post("http://192.168.0.112:3002/user/create", formData);
-    setActiveKey("8");
-  };
-
   const inital = {
     father_details: {
       first_name: "",
@@ -73,37 +48,37 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
   const schema = Yup.object({
     father_details: Yup.object({
       first_name: Yup.string()
-        .required("First Name is required")
+        .required("First Name is Required")
         .min(3, "too short"),
       last_name: Yup.string()
-        .required("Last Name is required")
+        .required("Last Name is Required")
         .min(3, "too short"),
 
       mobile_no: Yup.number()
         .typeError("invalid number")
         .min(6000000000, "invalid number")
         .max(9999999999, "invalid number")
-        .required(" number is required"),
+        .required(" number is Required"),
       email: Yup.string()
         .email("invalid email")
-        .required("Email is required")
+        .required("Email is Required")
         .typeError("invalid"),
       qualification: Yup.string()
-        .required("Qualification is required")
+        .required("Qualification is Required")
         .min(2, "invalid"),
       occupation: Yup.string()
-        .required("Ocuupation is required")
+        .required("Ocuupation is Required")
         .min(3, "invalid"),
 
-      work: Yup.string().required("Work is required").min(5, "invalid"),
+      work: Yup.string().required("Work is Required").min(5, "invalid"),
 
       income: Yup.number()
         .min(5000, "invalid")
-        .required("Income is required")
+        .required("Income is Required")
         .typeError("invalid income"),
       photo: Yup.mixed()
         .nullable()
-        .required("image required")
+        .required("image Required")
         .test(
           "FILE_SIZE",
           "Uploaded file is too big.",
@@ -118,35 +93,35 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
     }),
     mother_details: Yup.object({
       first_name: Yup.string()
-        .required("First Name is required")
-        .min(3, "too short"),
+        .required("First Name is Required")
+        .min(3, "Too short"),
       last_name: Yup.string()
-        .required("Last Name is required")
-        .min(3, "too short"),
+        .required("Last Name is Required")
+        .min(3, "Too short"),
 
       mobile_no: Yup.number()
-        .typeError("invalid number")
-        .min(6000000000, "invalid number")
-        .max(9999999999, "invalid number")
-        .required(" number is required"),
+        .typeError("invalid Number")
+        .min(6000000000, "Invalid Number")
+        .max(9999999999, "Invalid Number")
+        .required(" Number is Required"),
       email: Yup.string()
-        .email("invalid email")
-        .required("Email is required")
-        .typeError("invalid"),
+        .email("Invalid email")
+        .required("Email is Required")
+        .typeError("Invalid"),
       qualification: Yup.string()
-        .required("Qualification is required")
-        .min(3, "invalid"),
+        .required("Qualification is Required")
+        .min(3, "Invalid"),
       occupation: Yup.string()
-        .required("Ocuupation is required")
-        .min(3, "invalid"),
-      work: Yup.string().required("Work is required").min(5, "invalid"),
+        .required("Occupation is Required")
+        .min(3, "Invalid"),
+      work: Yup.string().required("Work is Required").min(5, "Invalid"),
       income: Yup.number()
-        .min(5000, "invalid")
-        .required("Income is required")
-        .typeError("invalid income"),
+        .min(5000, "Invalid")
+        .required("Income is Required")
+        .typeError("invalid Income"),
       photo: Yup.mixed()
         .nullable()
-        .required("image required")
+        .required("image Required")
         .test(
           "FILE_SIZE",
           "Uploaded file is too big.",
@@ -166,9 +141,9 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
       <Formik
         initialValues={inital}
         validationSchema={schema}
-        onSubmit={(e) => {
-          setData(e);
-          Call();
+        onSubmit={(a) => {
+          setData(a);
+          setActiveKey("8");
         }}
       >
         {({ errors, touched, values, setFieldValue }) => {
@@ -184,7 +159,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="FirstName"
                     className="form-control n-2 Parent-child1"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.first_name &&
                       touched?.father_details?.first_name &&
                       errors?.father_details?.first_name}
@@ -196,7 +171,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="LastName"
                     className="form-control n-2 Parent-child2"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.last_name &&
                       touched?.father_details?.last_name &&
                       errors?.father_details?.last_name}
@@ -208,7 +183,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="MobileNumber"
                     className="form-control n-2 Parent-child3"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.mobile_no &&
                       touched?.father_details?.mobile_no &&
                       errors?.father_details?.mobile_no}
@@ -220,7 +195,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Email"
                     className="form-control n-2 Parent-child4"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.email &&
                       touched?.father_details?.email &&
                       errors?.father_details?.email}
@@ -232,7 +207,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Qualification"
                     className="form-control n-2 Parent-child5"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.qualification &&
                       touched?.father_details?.qualification &&
                       errors?.father_details?.qualification}
@@ -244,7 +219,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Occupation"
                     className="form-control n-2 Parent-child6"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.occupation &&
                       touched?.father_details?.occupation &&
                       errors?.father_details?.occupation}
@@ -256,7 +231,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Place of Work"
                     className="form-control n-2 Parent-child7"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.work &&
                       touched?.father_details?.work &&
                       errors?.father_details?.work}
@@ -269,7 +244,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Income"
                     className="form-control n-2 Parent-child8"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.father_details?.income &&
                       touched?.father_details?.income &&
                       errors?.father_details?.income}
@@ -318,13 +293,14 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                         setFieldValue(
                           "father_details.photo",
                           e.target.files[0]
-                        ),
-                          message.success("Successfully updated");
+                        );
+                        message.success("Successfully updated");
                       }}
                       hidden
                     />
                   </div>
-                  <div>
+                  <div className="errors">
+                    {values?.father_details?.photo.name}
                     {errors?.father_details?.photo &&
                       touched?.father_details?.photo &&
                       errors?.father_details?.photo}
@@ -342,7 +318,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="FirstName"
                     className="form-control n-2 Parent-child1"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.first_name &&
                       touched?.mother_details?.first_name &&
                       errors?.mother_details?.first_name}
@@ -354,7 +330,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="LastName"
                     className="form-control n-2 Parent-child2"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.last_name &&
                       touched?.mother_details?.last_name &&
                       errors?.mother_details?.last_name}
@@ -366,7 +342,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="MobileNumber"
                     className="form-control n-2 Parent-child3"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.mobile_no &&
                       touched?.mother_details?.mobile_no &&
                       errors?.mother_details?.mobile_no}
@@ -378,7 +354,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Email"
                     className="form-control n-2 Parent-child4"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.email &&
                       touched?.mother_details?.email &&
                       errors?.mother_details?.email}
@@ -390,7 +366,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Qualification"
                     className="form-control n-2 Parent-child5"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.qualification &&
                       touched?.mother_details?.qualification &&
                       errors?.mother_details?.qualification}
@@ -402,7 +378,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Occupation"
                     className="form-control n-2 Parent-child6"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.occupation &&
                       touched?.mother_details?.occupation &&
                       errors?.mother_details?.occupation}
@@ -414,7 +390,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Place of Work"
                     className="form-control n-2 Parent-child7"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.work &&
                       touched?.mother_details?.work &&
                       errors?.mother_details?.work}
@@ -427,7 +403,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     placeholder="Income"
                     className="form-control n-2 Parent-child8"
                   ></Field>
-                  <div>
+                  <div className="errors">
                     {errors?.mother_details?.income &&
                       touched?.mother_details?.income &&
                       errors?.mother_details?.income}
@@ -445,7 +421,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                   >
                     <p className="eli-content">
                       <span style={{ fontSize: "18px", textAlign: "center" }}>
-                        Mather Photo
+                        Mother Photo
                       </span>
                       <br />
                       <span>
@@ -455,7 +431,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                       </span>
                     </p>
                     <label
-                      for="myFile5"
+                      for="myFile9"
                       style={{
                         outline: "none",
                         padding: "5px 10px",
@@ -470,7 +446,7 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                     </label>
                     <input
                       type="file"
-                      id="myFile5"
+                      id="myFile9"
                       name="mother_details.photo"
                       onChange={(e) => {
                         setFieldValue(
@@ -482,7 +458,12 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                       hidden
                     />
                   </div>
-                  <div>{errors?.mother_details?.photo}</div>
+                  <div className="errors">
+                    {values?.mother_details?.photo.name}
+                    {errors?.mother_details?.photo &&
+                      touched?.mother_details?.photo &&
+                      errors?.mother_details?.photo}
+                  </div>
                 </div>
               </div>
               <div className="Parent-footer">
@@ -502,6 +483,14 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                   <Button type="primary" htmlType="submit">
                     {"Submit"}
                   </Button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      console.log(bulk);
+                    }}
+                  >
+                    call
+                  </button>
                 </div>
               </div>
             </Form>

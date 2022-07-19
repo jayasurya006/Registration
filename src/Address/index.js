@@ -40,33 +40,33 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
   const schema = Yup.object({
     communication_address: Yup.object({
       address_1: Yup.string()
-        .required("address is required")
+        .required("Address is Required")
         .min(3, "Too short"),
       address_2: Yup.string()
-        .required("address is required")
+        .required("Address is Required")
         .min(3, "Too short"),
-      state: Yup.string().required("address is required").min(3, "Too short"),
-      city: Yup.string().required("city is required").min(3, "Too short"),
+      state: Yup.string().required("Address is required").min(3, "Too short"),
+      city: Yup.string().required("City is Required").min(3, "Too short"),
       pin_code: Yup.number()
-        .min(100000, "invalid")
-        .max(999999, " invalid")
-        .typeError("invalid Pincode")
-        .required("Pincode is required"),
+        .min(100000, "Invalid")
+        .max(999999, " Invalid")
+        .typeError("Invalid Pincode")
+        .required("Pincode is Required"),
     }),
     permanent_address: Yup.object({
       address_1: Yup.string()
-        .required("address is required")
+        .required("Address is Required")
         .min(3, "Too short"),
       address_2: Yup.string()
-        .required("address is required")
-        .min(3, "Too short"),
-      state: Yup.string().required("address is required").min(3, "too short"),
-      city: Yup.string().required("city is required").min(3, "too short"),
+        .required("Address is Required")
+        .min(3, "Too Short"),
+      state: Yup.string().required("Address is Required").min(3, "Too Short"),
+      city: Yup.string().required("City is Required").min(3, "Too Short"),
       pin_code: Yup.number()
-        .min(100000, "invalid")
-        .max(999999, "invalid")
+        .min(100000, "Invalid")
+        .max(999999, "Invalid")
         .typeError("invalid Pincode")
-        .required("Pincode is required"),
+        .required("Pincode is Required"),
     }),
   });
 
@@ -115,12 +115,14 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             className="form-control n-2"
                             placeholder="Address 1"
                             name="communication_address.address_1"
-                            value={values?.commmunication_address?.address_1}
+                            value={values?.communication_address?.address_1}
                           />
-                          {errors?.communication_address?.address_1 &&
-                          touched?.communication_address?.address_1
-                            ? errors?.communication_address?.address_1
-                            : null}
+                          <div className="errors">
+                            {errors?.communication_address?.address_1 &&
+                            touched?.communication_address?.address_1
+                              ? errors?.communication_address?.address_1
+                              : null}
+                          </div>
                         </div>
                         <div className="Address">
                           <Field
@@ -129,23 +131,14 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             name="communication_address.address_2"
                             value={values?.communication_address?.address_2}
                           />
-                          {errors?.communication_address?.address_2 &&
-                          touched?.communication_address?.address_2
-                            ? errors?.communication_address?.address_2
-                            : null}
+                          <div className="errors">
+                            {errors?.communication_address?.address_2 &&
+                            touched?.communication_address?.address_2
+                              ? errors?.communication_address?.address_2
+                              : null}
+                          </div>
                         </div>
-                        <div className="Address">
-                          <Field
-                            className="form-control n-2"
-                            placeholder="state"
-                            name="communication_address.state"
-                            value={values?.communication_address?.state}
-                          />
-                          {errors?.communication_address?.state &&
-                          touched?.communication_address?.state
-                            ? errors?.communication_address?.state
-                            : null}
-                        </div>
+
                         <div className="Address">
                           <Field
                             className="form-control n-2"
@@ -153,10 +146,12 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             name="communication_address.city"
                             value={values?.communication_address?.city}
                           />
-                          {errors?.communication_address?.city &&
-                          touched?.communication_address?.city
-                            ? errors?.communication_address?.city
-                            : null}
+                          <div className="errors">
+                            {errors?.communication_address?.city &&
+                            touched?.communication_address?.city
+                              ? errors?.communication_address?.city
+                              : null}
+                          </div>
                         </div>
                         <div className="Address">
                           <Field
@@ -165,9 +160,25 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             name="communication_address.pin_code"
                             value={values?.communication_address?.pin_code}
                           />
-                          {errors?.communication_address?.pin_code &&
-                          touched?.communication_address?.pin_code
-                            ? errors?.communication_address?.pin_code
+                          <div className="errors">
+                            {errors?.communication_address?.pin_code &&
+                            touched?.communication_address?.pin_code
+                              ? errors?.communication_address?.pin_code
+                              : null}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="Address">
+                        <Field
+                          className="form-control n-2"
+                          placeholder="state"
+                          name="communication_address.state"
+                          value={values?.communication_address?.state}
+                        />
+                        <div className="errors">
+                          {errors?.communication_address?.state &&
+                          touched?.communication_address?.state
+                            ? errors?.communication_address?.state
                             : null}
                         </div>
                       </div>
@@ -193,10 +204,12 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             }
                             disabled={check}
                           />
-                          {errors?.permanent_address?.address_1 &&
-                          touched?.permanent_address?.address_1
-                            ? errors?.permanent_address?.address_1
-                            : null}
+                          <div className="errors">
+                            {errors?.permanent_address?.address_1 &&
+                            touched?.permanent_address?.address_1
+                              ? errors?.permanent_address?.address_1
+                              : null}
+                          </div>
                         </div>
                         <div className="Address">
                           <Field
@@ -210,28 +223,14 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             }
                             disabled={check}
                           />
-                          {errors?.permanent_address?.address_2 &&
-                          touched?.permanent_address?.address_2
-                            ? errors?.permanent_address?.address_2
-                            : null}
+                          <div className="errors">
+                            {errors?.permanent_address?.address_2 &&
+                            touched?.permanent_address?.address_2
+                              ? errors?.permanent_address?.address_2
+                              : null}
+                          </div>
                         </div>
-                        <div className="Address">
-                          <Field
-                            className="form-control n-2"
-                            placeholder="state"
-                            name="permanent_address.state"
-                            value={
-                              check
-                                ? values.communication_address.state
-                                : values.permanent_address.state
-                            }
-                            disabled={check}
-                          />
-                          {errors?.permanent_address?.state &&
-                          touched?.permanent_address?.state
-                            ? errors?.permanent_address?.state
-                            : null}
-                        </div>
+
                         <div className="Address">
                           <Field
                             className="form-control n-2"
@@ -244,10 +243,12 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             }
                             disabled={check}
                           />
-                          {errors?.permanent_address?.city &&
-                          touched?.permanent_address?.city
-                            ? errors?.permanent_address?.city
-                            : null}
+                          <div className="errors">
+                            {errors?.permanent_address?.city &&
+                            touched?.permanent_address?.city
+                              ? errors?.permanent_address?.city
+                              : null}
+                          </div>
                         </div>
                         <div className="Address">
                           <Field
@@ -261,10 +262,31 @@ export default function Address({ setActiveKey, bulk, setBulk }) {
                             }
                             disabled={check}
                           />
-                          {errors?.permanent_address?.pin_code &&
-                          touched?.permanent_address?.pin_code ? (
-                            <div>{errors?.permanent_address?.pin_code}</div>
-                          ) : null}
+                          <div className="errors">
+                            {errors?.permanent_address?.pin_code &&
+                            touched?.permanent_address?.pin_code ? (
+                              <div>{errors?.permanent_address?.pin_code}</div>
+                            ) : null}
+                          </div>
+                        </div>
+                        <div className="Address">
+                          <Field
+                            className="form-control n-2"
+                            placeholder="state"
+                            name="permanent_address.state"
+                            value={
+                              check
+                                ? values.communication_address.state
+                                : values.permanent_address.state
+                            }
+                            disabled={check}
+                          />
+                          <div className="errors">
+                            {errors?.permanent_address?.state &&
+                            touched?.permanent_address?.state
+                              ? errors?.permanent_address?.state
+                              : null}
+                          </div>
                         </div>
                       </div>
                     </Col>
