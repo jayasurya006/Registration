@@ -48,11 +48,14 @@ function App() {
             <Routes>
               <Route
                 exact
-                path="/tabs"
+                path="/"
                 element={
                   <>
                     <div className="Tabs-1">
                       <Tabs
+                        onChange={(e) => {
+                          setActiveKey(e);
+                        }}
                         centered
                         tabBarGutter={40}
                         activeKey={activeKey}

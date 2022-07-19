@@ -23,17 +23,6 @@ const Thank = ({ setActiveKey }) => {
           here.
         </p>
       </div>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          width: "100%",
-        }}
-      >
-        <Button onClick={() => setActiveKey("4")}>Priview</Button>
-        <Button type="primary">Download</Button>
-      </div>
     </div>
   );
 };

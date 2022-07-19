@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useEffect, useState } from "react";
-import { Form, Input, Select, DatePicker, Button } from "antd";
+import { Form, Input, Select, DatePicker, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "./index.css";
 import Upload from "../Component/Upload";
@@ -26,7 +26,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
       blood_group: "",
       mother_tongue: "",
       extra_curricular: "",
-      prof_of_sports: "",
+      prof_in_sports: "",
       gender: "",
       height: "",
       aadhar_no: "",
@@ -67,7 +67,7 @@ export default function ({ setActiveKey, bulk, setBulk }) {
         .min(5, "invalid")
         .required("mother tongue is required"),
       extra_curricular: Yup.string().min(5, "invalid").required(" required"),
-      prof_of_sports: Yup.string().min(5, "invalid").required("required"),
+      prof_in_sports: Yup.string().min(5, "invalid").required("required"),
       gender: Yup.string().required("gender is is required"),
       height: Yup.number()
         .min(1, "Give proper height")
@@ -237,7 +237,9 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                   placeholder="DOB"
                   style={{ width: "100%" }}
                   name="dob"
-                  onChange={(e) => Formik.setFieldValue("dob", e)}
+                  onChange={(e) => {
+                    Formik.setFieldValue("dob", e);
+                  }}
                 />
                 {Formik.errors.dob && Formik.touched.dob
                   ? Formik.errors.dob
@@ -383,12 +385,12 @@ export default function ({ setActiveKey, bulk, setBulk }) {
               <Form.Item className="formChild">
                 <Input
                   placeholder="Proficiency in Sports"
-                  name="prof_of_sports"
+                  name="prof_in_sports"
                   onBlur={Formik.handleBlur}
                   onChange={Formik.handleChange}
                 />
-                {Formik.errors.prof_of_sports && Formik.touched.prof_of_sports
-                  ? Formik.errors.prof_of_sports
+                {Formik.errors.prof_in_sports && Formik.touched.prof_in_sports
+                  ? Formik.errors.prof_in_sports
                   : null}
               </Form.Item>
               <Form.Item className="formChild">
@@ -437,9 +439,10 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     id="myFile"
                     hidden
                     name="age_proof"
-                    onChange={(e) =>
-                      Formik.setFieldValue("age_proof", e.target.files[0])
-                    }
+                    onChange={(e) => {
+                      Formik.setFieldValue("age_proof", e.target.files[0]),
+                        message.success("Successfully updated");
+                    }}
                   />
                 </div>
                 <div className="errors">
@@ -477,9 +480,13 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     id="myFile2"
                     hidden
                     name="applicant_photo"
-                    onChange={(e) =>
-                      Formik.setFieldValue("applicant_photo", e.target.files[0])
-                    }
+                    onChange={(e) => {
+                      Formik.setFieldValue(
+                        "applicant_photo",
+                        e.target.files[0]
+                      ),
+                        message.success("Successfully updated");
+                    }}
                   />
                 </div>
                 <div className="errors">
@@ -520,9 +527,10 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     id="myFile3"
                     hidden
                     name="aadhar_card"
-                    onChange={(e) =>
-                      Formik.setFieldValue("aadhar_card", e.target.files[0])
-                    }
+                    onChange={(e) => {
+                      Formik.setFieldValue("aadhar_card", e.target.files[0]),
+                        message.success("Successfully updated");
+                    }}
                   />
                   <div className="errors">
                     {Formik.errors.aadhar_card && Formik.touched.aadhar_card

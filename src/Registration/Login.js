@@ -75,7 +75,11 @@ const Login = ({ setActiveKey, bulk, setBulk }) => {
               </Button>
             </div>
             <div className="form-button">
-              <Button danger type="primary" onClick={() => console.log(bulk)}>
+              <Button
+                style={{ backgroundColor: "#23c46c" }}
+                type="primary"
+                onClick={() => console.log(bulk)}
+              >
                 Login
               </Button>
             </div>

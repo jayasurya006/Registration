@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { Form, Formik, Field } from "formik";
 import "./index.css";
 import { UploadOutlined } from "@ant-design/icons";
@@ -314,9 +314,13 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                       type="file"
                       id="myFile6"
                       name="father_details.photo"
-                      onChange={(e) =>
-                        setFieldValue("father_details.photo", e.target.files[0])
-                      }
+                      onChange={(e) => {
+                        setFieldValue(
+                          "father_details.photo",
+                          e.target.files[0]
+                        ),
+                          message.success("Successfully updated");
+                      }}
                       hidden
                     />
                   </div>
@@ -468,9 +472,13 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                       type="file"
                       id="myFile5"
                       name="mother_details.photo"
-                      onChange={(e) =>
-                        setFieldValue("mother_details.photo", e.target.files[0])
-                      }
+                      onChange={(e) => {
+                        setFieldValue(
+                          "mother_details.photo",
+                          e.target.files[0]
+                        ),
+                          message.success("Successfully updated");
+                      }}
                       hidden
                     />
                   </div>
