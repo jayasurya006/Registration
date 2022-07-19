@@ -142,6 +142,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
               {relevantType === "Mother" ? (
                 <>
                   <Form.Item
+                    className="cat-input"
                     name="name"
                     rules={[
                       { required: true, message: "Please input your Name!" },
@@ -151,6 +152,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
                   </Form.Item>
 
                   <Form.Item
+                    className="cat-input"
                     name="year"
                     rules={[
                       {
@@ -169,6 +171,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
               {relevantType === "Siblings" ? (
                 <div>
                   <Form.Item
+                    className="cat-input"
                     name="name"
                     rules={[
                       {
@@ -181,6 +184,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
                   </Form.Item>
 
                   <Form.Item
+                    className="cat-input"
                     name="class"
                     rules={[
                       {
@@ -192,6 +196,7 @@ const AdmissionType = ({ setActiveKey, bulk, setBulk }) => {
                     <Input placeholder="Sibiling Class" />
                   </Form.Item>
                   <Form.Item
+                    className="cat-input"
                     name="section"
                     rules={[
                       {

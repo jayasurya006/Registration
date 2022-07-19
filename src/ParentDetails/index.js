@@ -476,8 +476,8 @@ const Parent = ({ setActiveKey, bulk, setBulk }) => {
                         setFieldValue(
                           "mother_details.photo",
                           e.target.files[0]
-                        ),
-                          message.success("Successfully updated");
+                        );
+                        message.success("Successfully updated");
                       }}
                       hidden
                     />

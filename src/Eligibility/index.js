@@ -36,11 +36,12 @@ const Eligibility = ({ setActiveKey }) => {
 
   const style = {
     fontSize: "30px",
-    color: "#b8bbbf",
+    color: "#bbc9c9",
   };
 
   const styleActive = {
     fontSize: "30px",
+    color: "#5eff91",
   };
 
   return (

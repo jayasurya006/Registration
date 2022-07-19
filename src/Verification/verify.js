@@ -54,7 +54,7 @@ const Verify = ({ setActiveKey, bulk }) => {
         </div>
         <Form.Item name="otp">
           <input
-            className="form-control"
+            className="form-control input"
             placeholder="Enter Verification Code"
             prefix={"OTP : "}
             onChange={(e) => setState(e.target.value)}
