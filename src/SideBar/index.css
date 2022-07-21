@@ -11,9 +11,10 @@
 
 .sidebar-content {
     height: 80%;
+    
     background-color:rgb(99, 109, 117);
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -30,4 +31,9 @@
 .sidebar-details  p {
     color: rgb(253, 253, 253);
     text-align: left
+
+}
+.side-links{
+    margin-top:20px;
+    line-gap-override: 20px;
 }

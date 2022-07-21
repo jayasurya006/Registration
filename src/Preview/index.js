@@ -104,7 +104,7 @@ const Preview = ({ setActiveKey, bulk }) => {
                   <b>{student.age}</b>
                 </Descriptions.Item>
                 <Descriptions.Item label={<span>DOB</span>}>
-                  <b>{student.dob.format("DD/MM/YYYY")}</b>
+                  <b>{student?.dob?.format("DD/MM/YYYY")}</b>
                 </Descriptions.Item>
                 <Descriptions.Item label={<span>Student Adhar No</span>}>
                   <b>{student.aadhar_no}</b>
