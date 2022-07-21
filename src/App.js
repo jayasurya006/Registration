@@ -16,6 +16,9 @@ import SideBar from "./SideBar/index";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signin from "./Signin";
 import Preview from "./Preview/index";
+import About from "./About/About";
+import Contact from "./Contact/index";
+import Support from "./Support";
 
 function App() {
   const [bulk, setBulk] = useState({
@@ -125,6 +128,9 @@ function App() {
                 }
               />
               <Route path="/Signin" element={<Signin />} />
+              <Route path="/About" element={<About />} />
+              <Route path="/Contact" element={<Contact />} />
+              <Route path="/Support" element={<Support />} />
             </Routes>
           </div>
         </div>

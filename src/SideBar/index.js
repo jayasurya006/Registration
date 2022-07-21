@@ -1,8 +1,10 @@
 import React from "react";
 import "./index.css";
 import { MailOutlined } from "@ant-design/icons";
+import About from "../About/About";
+import { Link } from "react-router-dom";
 
-export default function () {
+export default function Sidebar() {
   return (
     <div className="sidebar">
       <div
@@ -24,26 +26,18 @@ export default function () {
           <img src={"/dav.jpg"} alt=""></img>
         </div>
       </div>
+
       <div className="sidebar-content">
-        <div className="sidebar-details">
-          <div className="sidebar-details-heading" style={{ fontSize: "15px" }}>
-            Contact
+        <div className="side-links ">
+          <div>
+            <Link to="/About">About</Link>
           </div>
-          <p className="eli-content">
-            <span>
-              <MailOutlined
-                style={{
-                  marginRight: "3px",
-                  marginBottom: "7px",
-                  lineHeight: "3px",
-                }}
-              />
-              info@mvmcbe.com
-            </span>
-          </p>
-          <p className="eli-content">
-            <span></span> 0433-3665457 | 7708070029
-          </p>
+          <div>
+            <Link to="/Contact">Contact</Link>
+          </div>
+          <div>
+            <Link to="/Support">Support</Link>
+          </div>
         </div>
       </div>
     </div>

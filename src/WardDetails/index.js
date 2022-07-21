@@ -476,8 +476,8 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     hidden
                     name="age_proof"
                     onChange={(e) => {
-                      Formik.setFieldValue("age_proof", e.target.files[0]),
-                        message.success("Successfully Updated");
+                      Formik.setFieldValue("age_proof", e.target.files[0]);
+                      message.success("Successfully Updated");
                     }}
                   />
                 </div>
@@ -522,8 +522,8 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                       Formik.setFieldValue(
                         "applicant_photo",
                         e.target.files[0]
-                      ),
-                        message.success("Successfully Updated");
+                      );
+                      message.success("Successfully Updated");
                     }}
                   />
                 </div>
@@ -568,8 +568,8 @@ export default function ({ setActiveKey, bulk, setBulk }) {
                     hidden
                     name="aadhar_card"
                     onChange={(e) => {
-                      Formik.setFieldValue("aadhar_card", e.target.files[0]),
-                        message.success("Successfully Updated");
+                      Formik.setFieldValue("aadhar_card", e.target.files[0]);
+                      message.success("Successfully Updated");
                     }}
                   />
                   <div className="errors">
